@@ -16,7 +16,6 @@ function filecache(dir, cb) {
       if(err) return cb(err)
       
       if(s.isDirectory()) {
-        console.log('isDirectory', p)
         fs.readdir(p, function(err, files) {
           if(err) return cb(err)
           queue = queue.concat(files.map(function(f) {
@@ -25,7 +24,6 @@ function filecache(dir, cb) {
           read()
         })
       } else {
-        console.log('isFile', p)
         fs.readFile(p, function(err, d) {
           if(err) return cb(err)
           var pp = p.slice(0)
