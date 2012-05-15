@@ -12,10 +12,6 @@ Installation
 Usage Examples
 --------------
 
-See [server.js](https://github.com/oleics/node-filecache/tree/master/examples/server.js)
-in the examples directory for a ultra lightweight
-and lightning fast http webserver.
-
 ```js
 var filecache = require('filecache')
 
@@ -33,6 +29,10 @@ filecache('path/to/dir', function(err, cache) {
   console.log(cache['/some/file.txt'])
 })
 ```
+
+See [server.js](https://github.com/oleics/node-filecache/tree/master/examples/server.js)
+in the examples directory for a ultra lightweight
+and lightning fast node.js http webserver serving static files.
 
 MIT License
 -----------
