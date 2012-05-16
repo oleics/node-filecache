@@ -3,6 +3,7 @@ module.exports = filecache
 
 var fs = require('fs')
   , path = require('path')
+  , mime = require('mime')
 
 function filecache(dir, cb) {
   dir = path.resolve(dir)
@@ -29,6 +30,7 @@ function filecache(dir, cb) {
           var pp = p.slice(0)
             , k = pp.slice(dir.length).replace(/\\/g, '/')
           cache[k] = d
+          cache[k].mime_type = mime.lookup(pp)
           
           if(filecache.watchChanges) {
             fs.watch(pp, function() {
@@ -36,6 +38,7 @@ function filecache(dir, cb) {
                 if(err) return console.error(err.stack||err)
                 var was = cache[k]
                 cache[k] = d
+                cache[k].mime_type = was.mime_type
                 _notifyer(k, cache[k], was, cache, dir)
               })
             })
