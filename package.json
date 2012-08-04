@@ -1,11 +1,11 @@
 {
   "name": "filecache",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Simple in-memory file cache.",
   "author": "Oliver Leics <oliver.leics@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oleics/node-filecache.git"
+    "url": "git://github.com/oleics/node-filecache.git"
   },
   "bugs": {
     "url": "https://github.com/oleics/node-filecache/issues"
