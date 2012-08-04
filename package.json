@@ -5,7 +5,7 @@
   "author": "Oliver Leics <oliver.leics@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/oleics/node-filecache.git"
+    "url": "https://github.com/oleics/node-filecache.git"
   },
   "bugs": {
     "url": "https://github.com/oleics/node-filecache/issues"
