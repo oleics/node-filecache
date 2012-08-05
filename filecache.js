@@ -183,7 +183,7 @@ function filecache(dir, defaultOptions, cb) {
       cb = options
       options = {}
     }
-    options = genOptions(options, defaultOptions)
+    options = genOptions(options||{}, defaultOptions)
     
     p = path.resolve(p)
     
