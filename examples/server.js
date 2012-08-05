@@ -30,7 +30,7 @@ fc.on('change', function(d) {
   console.log('      file: %s', d.k)
   console.log('     mtime: %s', d.mtime.toUTCString())
   console.log(' mime-type: %s', d.mime_type)
-  console.log('      hash: %s', d.gzip ? d.hash : 'N/A')
+  console.log('      hash: %s', d.hash ? d.hash : 'N/A')
   console.log('    length: %s bytes', d.length)
   console.log('            %s bytes (gzip)', d.gzip ? d.gzip.length : 'N/A')
   console.log('            %s bytes (deflate)', d.deflate ? d.deflate.length : 'N/A')
