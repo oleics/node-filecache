@@ -178,7 +178,11 @@ function filecache(dir, defaultOptions, cb) {
     })
   }
   
+  var pending = 0
+  
   em.load = function(p, options, cb) {
+    ++pending
+
     if(typeof options === 'function') {
       cb = options
       options = {}
@@ -190,8 +194,10 @@ function filecache(dir, defaultOptions, cb) {
     function onDone(_p) {
       if(_p === p) {
         em.removeListener('done', onDone)
-        em.emit('ready', cache)
         cb && cb(null, cache)
+        if(--pending === 0) {
+          em.emit('ready', cache)
+        }
       }
     }
     em.on('done', onDone)
