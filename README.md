@@ -77,20 +77,33 @@ fast node.js http webserver serving static files.
 Options
 -------
 
+``prefix`` (default: null)  
+Prepend this string to the keys of the cache.
+
 ``watchDirectoryChanges`` (default: false)  
 Automatic reload of files within a directory.
 
-watchFileChanges (default: false)  
+``watchFileChanges`` (default: false)  
 Automatic reload of a changed file.
 
-hashAlgo (default: false)  
+``hashAlgo`` (default: false)  
 Algorithm to use for hashsum.
 
-gzip (default: false)
+``gzip`` (default: false)
 gzip-encode the file-contents.
 
-deflate (default: false)
+``deflate`` (default: false)
 deflate-encode the file-contents.
+
+API
+---
+
+``.load(path [, options] [, callback])``  
+Loads ``path`` into the filecache. ``path`` can be a file or a
+directory.
+
+``.httpHandler([options])``  
+Returns a handler for http-requests: handler(req, res [, next])
 
 MIT License
 -----------

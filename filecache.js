@@ -9,6 +9,7 @@ var fs = require('fs')
   , crypto = require('crypto')
   , zlib = require('zlib')
   , util = require('util')
+  , httpHandler = require('./http-handler')
 
 function prepare(d, options, cb) {
   if(options.hashAlgo) {
@@ -96,7 +97,7 @@ function generate(p, options, em) {
           }
           
           d.p = p
-          d.k = (options.root ? p.slice(options.root.length) : p).replace(/\\/g, '/')
+          d.k = (options.prefix ? options.prefix : '') + (options.root ? p.slice(options.root.length) : p).replace(/\\/g, '/')
           d.mtime = s.mtime
           d.mime_type = mime.lookup(p)
           
@@ -135,7 +136,8 @@ function filecache(dir, defaultOptions, cb) {
   if(typeof defaultOptions === 'function') {
     cb = defaultOptions
     defaultOptions =
-    { watchDirectoryChange: false
+    { prefix: false
+    , watchDirectoryChange: false
     , watchFileChange: false
     , gzip: false
     , deflate: false
@@ -187,6 +189,7 @@ function filecache(dir, defaultOptions, cb) {
       cb = options
       options = {}
     }
+    
     options = genOptions(options||{}, defaultOptions)
     
     p = path.resolve(p)
@@ -209,6 +212,10 @@ function filecache(dir, defaultOptions, cb) {
   
   if(dir) {
     em.load(dir, cb)
+  }
+  
+  em.httpHandler = function(options) {
+    return httpHandler(options, em)
   }
   
   return em
