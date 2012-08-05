@@ -203,6 +203,8 @@ function filecache(dir, defaultOptions, cb) {
     em.on('done', onDone)
     
     generate(p, options, em)
+    
+    return em
   }
   
   if(dir) {
