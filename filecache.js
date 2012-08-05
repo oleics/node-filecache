@@ -10,12 +10,6 @@ var fs = require('fs')
   , zlib = require('zlib')
   , util = require('util')
 
-function hash(d) {
-  var hash = crypto.createHash('sha1')
-  hash.update(d)
-  return hash.digest('hex')
-}
-
 function prepare(d, options, cb) {
   if(options.hashAlgo) {
     var hash = crypto.createHash(options.hashAlgo)
@@ -148,15 +142,19 @@ function filecache(dir, defaultOptions, cb) {
     , hashAlgo: false
     }
   }
+  if(typeof dir === 'function') {
+    cb = dir
+    dir = null
+  }
+  if(dir !== null && typeof dir === 'object' && !(dir instanceof String)) {
+    defaultOptions = dir
+    dir = null
+  }
   if(typeof defaultOptions === 'boolean') { // legacy code
     defaultOptions =
     { watchFileChange: defaultOptions
     , hashAlgo: 'sha1'
     }
-  }
-  if(typeof dir === 'function') {
-    cb = dir
-    dir = null
   }
   
   cb = cb || function() {}
