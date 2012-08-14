@@ -24,6 +24,8 @@ function create(options, fc) {
       , contents
       , headers = {}
     
+    req.urlparts = u
+    
     // lookup the contents to serve
     if(u.pathname === '/' && cache['/index.html']) {
       u.pathname = '/index.html'
@@ -32,9 +34,15 @@ function create(options, fc) {
     // handles file-not-found
     if(!cache[u.pathname]) {
       if(!cache['/404.html']) {
+        // user-defined handler
+        if(options.handler) {
+          return options.handler(req, res, next)
+        }
+        
         if(next) {
           return next()
         }
+        
         req.writeHead(404)
         req.end()
         return
