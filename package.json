@@ -1,6 +1,6 @@
 {
   "name": "filecache",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple in-memory file cache.",
   "author": "Oliver Leics <oliver.leics@gmail.com>",
   "repository": {
