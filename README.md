@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/oleics/node-filecache.png)](http://travis-ci.org/oleics/node-filecache)
 
 Filecache
 =========
